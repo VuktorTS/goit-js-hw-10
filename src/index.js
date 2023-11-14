@@ -12,7 +12,6 @@ import 'basicslider/dist/themes/default.min.css';
 import './css/style.css';
 
 const catInfo = document.querySelector('.cat-section');
-// const loader = document.querySelector('.loader');
 const option = {
   select: '.breed-select',
   events: {
@@ -47,8 +46,6 @@ function fetchOnClickBreed({ value }) {
   catInfo.innerHTML = '';
   fetchCatByBreed(value)
     .then(dataCat => {
-      // console.log('dataCat: ', dataCat);
-
       renderCatInfo(dataCat);
     })
     .catch(error => {
@@ -61,13 +58,14 @@ function fetchOnClickBreed({ value }) {
 function renderCatInfo(cat) {
   const markupInfoCat = markupCatInfo(cat[0].breeds[0]);
   const imageCat = markupImagesForCarusel(cat);
-  // console.log('imageCat: ', imageCat);
+
   const markup = `
       <div id="slider">
       </div>
       ${markupInfoCat}
   `;
   catInfo.innerHTML = markup;
+
   const instance = basicSlider.create(
     document.querySelector('#slider'),
     imageCat
